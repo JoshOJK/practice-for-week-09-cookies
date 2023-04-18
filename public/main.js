@@ -1,35 +1,53 @@
 /* ============================== PHASE 1 + 2 ============================== */
 
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+  }
+
+
+
 // For storing user's theme selection in cookies
 function storeTheme(themeName) {
-    // Your code here
+    document.cookie = `displayTheme=${themeName}; expires=Mon, 01 Apr 2024 00:00 UTC`;
 }
 
 // For restoring theme from cookies, if selected by the user in the past
 function restoreTheme() {
-    // Your code here
+    const theme = document.cookie
+    let newTheme = theme.split('=')
+    if(theme) {
+        setTheme(newTheme[1])
+    }
+
 }
 
 // For clearing theme selection from cookies (reset to default)
 function clearTheme() {
-    // Your code here
+    document.cookie = 'displayTheme=; expires=Thu, 01 Jan 1970 00:00 UTC'
 }
 
 /* ================================ PHASE 3 ================================ */
 
 // For storing user's display name in cookies
 function storeName(displayName) {
-    // Your code here
+    document.cookie =`displayName=${displayName}; expires=Mon, 01 Apr 2024 00:00 UTC`
 }
 
 // For restoring user's display name from cookies, if set in the past
 function restoreName() {
-    // Your code here
+    const name = getCookie('displayName')
+    let newName = name.split('=')
+    if(name) {
+        setTheme(newName[1])
+    }
+
 }
 
 // For clearing user's display name from cookies
 function clearName() {
-    // Your code here
+    document.cookie = 'displayName=; expires=Thu, 01 Jan 1970 00:00 UTC'
 }
 
 /* ========================================================================= */
